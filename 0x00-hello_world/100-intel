@@ -1,2 +1,2 @@
 #!/bin/bash
-CFILE="main.c"; ASMFILE="${CFILE%.c}.s"; gcc -S -masm=intel $CFILE -o $ASMFILE
+echo "Enter the name of the C file:";read CFILE;gcc -S -masm=intel $CFILE -o ${CFILE%.*}.s;echo "Assembly file:";cat ${CFILE%.*}.s;echo "C file:";echo $CFILE
