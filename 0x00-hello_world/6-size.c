@@ -11,7 +11,7 @@ int main(void)
 	int b;
 	long int c;
 	long long int d;
-	long double e;
+	float e;
 
 
 
@@ -19,6 +19,6 @@ int main(void)
 	printf("Size of int: %ld bytes\n", sizeof(b));
 	printf("Size of long int: %ld bytes\n", sizeof(c));
 	printf("Size of long long: %ld bytes\n", sizeof(d));
-	printf("Size of long double: %ld bytes\n", sizeof(e));
+	printf("Size of float: %ld bytes\n", sizeof(e));
 	return (0);
 }
