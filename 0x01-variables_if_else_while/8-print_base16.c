@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - Prints the alphabet without q and e.
+ * main - Prints the numbers of base16.
  *
  * Return: Always 0 (Success)
  */
