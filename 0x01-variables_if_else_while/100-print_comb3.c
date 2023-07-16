@@ -1,31 +1,30 @@
 #include <stdio.h>
 
 /**
- * main - Prints the alphabet without q and e.
- *
- * Return: Always 0 (Success)
+ * main - prints all different combinations of two digits
+ * Return: ALways 0 (Success)
  */
 int main(void)
 {
-	int i, j;
+	int n, m;
 
-	for (i = 0; i < 9; i++)
+	for (n = 48; n <= 56; n++)
 	{
-		for (j = i + 1; j <= 9; j++)
+		for (m = 49; m <= 57; m++)
 		{
-			putchar (i + '0');
-			putchar (j + '0');
-
-
-
-if (i != 8 || j != 9);
+			if (m > n)
 			{
-				putchar (',');
-				putchar (' ');
+				putchar(n);
+				putchar(m);
+				if (n != 56 || m != 57)
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
 		}
 	}
-
-	putchar ('\n');
+	putchar('\n');
 	return (0);
 }
+
