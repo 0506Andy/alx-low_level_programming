@@ -1,2 +1,2 @@
 #!/bin/bash
-CFILE="main.c"; ASMFILE="${CFILE%.c}.s"; gcc -S -masm=intel "$CFILE" -o "$ASMFILE" && gcc -o main "$CFILE"
+export CFILE="main.c"; ASMFILE="${CFILE%.c}.s"; gcc -S -masm=intel "$CFILE" -o "$ASMFILE" && gcc -o main "$CFILE"
