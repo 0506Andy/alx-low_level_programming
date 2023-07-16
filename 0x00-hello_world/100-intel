@@ -1,2 +1,3 @@
 #!/bin/bash
-CFILE="main.c"; gcc -S -masm=intel "$CFILE" && mv "${CFILE%.*}.s" "${CFILE%.*}.s"
+import os; c_file = "main.c"; asm_file = c_file.replace(".c", ".s"); os.system(f"gcc -S -masm=intel {c_file} && mv a.out.s {asm_file}")
+
