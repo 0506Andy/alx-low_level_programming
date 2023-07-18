@@ -2,10 +2,11 @@
 #include <unistd.h>
 
 /**
- *main - prints alphabet in lower case
+ * print_alphabet - prints alphabet in lower case
  *
  * Description - this program prints the alphabets in lowercase
  *
+ * Return : void
  */
 void print_alphabet(void)
 {
