@@ -4,6 +4,7 @@
 /**
  * print_times_table -Prints the times table of n
  * @n: Value of the table to be printed
+ * Starting with 0
  * Return:void
  */
 void print_times_table(int n)
@@ -21,9 +22,7 @@ void print_times_table(int n)
 				_putchar(' ');
 				prod = x * y;
 				if (prod <= 99)
-				{
 					_putchar(' ');
-				}
 				if (prod <= 9)
 					_putchar(' ');
 				if (prod >= 100)
@@ -31,8 +30,7 @@ void print_times_table(int n)
 					_putchar((prod / 100) + '0');
 					_putchar((prod / 10) % 10 + '0');
 				}
-				{
-					else if ((prod <= 99) && (prod >= 10))
+				else if ((prod <= 99) && (prod >= 10))
 				{
 			_putchar((prod / 10) + '0');
 				}
@@ -41,5 +39,4 @@ void print_times_table(int n)
 	_putchar('\n');
 		}
 	}
-}
 }
