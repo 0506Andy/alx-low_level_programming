@@ -1,25 +1,15 @@
 #include "main.h"
-#include <unistd.h>
 
 /**
- * print_alphabet - prints alphabet in lower case
+ * print_alphabet -Print alphabet in low caps
  *
- * Description - this program prints the alphabets in lowercase
- *
- * Return : void
+ * Return: void
  */
 void print_alphabet(void)
 {
-	char letter;
+	char ch;
 
-
-
-	for
-		(letter = 'a';
-		 letter <= 'z';
-		 letter++);
-	{
-		_putchar(letter);
-	}
-	_putchar('\n');
+	for (ch = 'a'; ch <= 'z'; ch++)
+		_putchar(ch);
+	_putchar ('\n');
 }
