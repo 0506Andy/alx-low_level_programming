@@ -1,5 +1,7 @@
 #include "main.h"
-#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+
 /**
  * rot13 - encodes a string using rot13
  * @str: String to be encoded
@@ -7,19 +9,17 @@
  */
 char *rot13(char *str)
 {
-	char *s = str;
+	int i;
+	char c;
 
-	while (*s != '\0')
+	for (i = 0; str[i]; i++)
 	{
-		if ((*s >= 'a' && *s <= 'm') || (*s >= 'A' && *s <= 'M'))
+		c = str[i];
+
+		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		{
-			*s = *s + 13;
+			str[i] = (c - 'A' < 26 ? 'A' : 'a') + ((c - 'A' + 13) % 26);
 		}
-		else if ((*s >= 'n' && *s <= 'z') || (*s >= 'N' && *s <= 'Z'))
-		{
-			*s = *s - 13;
-		}
-		s++;
 	}
 	return (str);
 }
