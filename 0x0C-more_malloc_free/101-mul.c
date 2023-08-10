@@ -1,133 +1,101 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
 
 /**
- * multiply - multiplies two integers
- * @num1:multicand
- * @num2:multiplier
- * Return:(num1 * num2)
+ * is_digit - checks if a string contains a non-digit char
+ * @s: string to be evaluated
+ *
+ * Return: 0 if a non-digit is found, 1 otherwise
  */
-int multiply(int num1, int num2)
+int is_digit(char *s)
 {
-	return (num1 * num2);
-}
+	int i = 0;
 
-/**
- * is_digit - checks if number is positive
- * @str:pointer to a number to be checked
- * Return:1
- */
-int is_digit(char *str)
-{
-	while (*str)
+	while (s[i])
 	{
-		if (*str < '0' || *str > '9')
-		{
+		if (s[i] < '0' || s[i] > '9')
 			return (0);
-		}
-		str++;
+		i++;
 	}
 	return (1);
 }
 
 /**
- * print_number - prints a number
- * @num:number to be printed
- * Return:void
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
  */
-void print_number(int num)
+int _strlen(char *s)
 {
-	int reverse;
+	int i = 0;
 
-	if (num == 0)
+	while (s[i] != '\0')
 	{
-		_putchar('0');
-		return;
-	}
-	if (num < 0)
-	{
-		_putchar('-');
-		num = -num;
-	}
-
-	reverse = 0;
-	while (num > 0)
-	{
-		reverse = reverse * 10 + num % 10;
-		num /= 10;
-	}
-	while (reverse > 0)
-	{
-		_putchar(reverse % 10 + '0');
-		reverse /= 10;
-	}
-}
-
-/**
- * atoi - changes string to integer
- * @str:string to be changed
- * Return: result on Success
- */
-int atoi(const char *str)
-{
-	int result, sign, i, digit;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-
-	if (str[0] == '-')
-	{
-		sign = -1;
 		i++;
 	}
-	for (; str[i] != '\0'; i++)
-	{
-		digit = str[i] - '0';
-
-		if (digit >= 0 && digit <= 9)
-		{
-			result = result * 10 + digit;
-		}
-		else
-		{
-			break;
-		}
-	}
-	result *= sign;
-
-	return (result);
+	return (i);
 }
 
 /**
- * main - multiplies two number
- * argc: number of arguments
- * argv: arrays
- * Return:0
+ * errors - handles errors for main
+ */
+void errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: always 0 (Success)
  */
 int main(int argc, char *argv[])
 {
-	int num1, num2, result;
+	char *s1, *s2;
+	int len1, len2, len, i, carry, digit1, digit2, *result, a = 0;
 
-	if (argc != 3 ||
-			!is_digit(argv[1]) ||
-			!is_digit(argv[2]))
+	s1 = argv[1], s2 = argv[2];
+	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+		errors();
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+	len = len1 + len2 + 1;
+	result = malloc(sizeof(int) * len);
+	if (!result)
+		return (1);
+	for (i = 0; i <= len1 + len2; i++)
+		result[i] = 0;
+	for (len1 = len1 - 1; len1 >= 0; len1--)
 	{
-		_putchar('E');
-		_putchar('r');
-		_putchar('r');
-		_putchar('o');
-		_putchar('r');
-		_putchar('\n');
-		return (98);
+		digit1 = s1[len1] - '0';
+		carry = 0;
+		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		{
+			digit2 = s2[len2] - '0';
+			carry += result[len1 + len2 + 1] + (digit1 * digit2);
+			result[len1 + len2 + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			result[len1 + len2 + 1] += carry;
 	}
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[2]);
-	result = multiply(num1, num2);
-
-	print_number(result);
+	for (i = 0; i < len - 1; i++)
+	{
+		if (result[i])
+			a = 1;
+		if (a)
+			_putchar(result[i] + '0');
+	}
+	if (!a)
+		_putchar('0');
 	_putchar('\n');
-
+	free(result);
 	return (0);
 }
+
