@@ -1,4 +1,4 @@
-#include "variadic_functions"
+#include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,15 +6,15 @@
 /**
  * print_strings - prints string
  * @separator:string printed between the strings
- * @n:number of strings 
+ * @n:number of strings
  * Return:string
  */
-void print_strings(const char *separator, const unsigned int n, ...);
+void print_strings(const char *separator, const unsigned int n, ...)
 {
 	va_list args;
 
 	unsigned int i;
-	char * str;
+	char *str;
 
 	va_start(args, n);
 
@@ -22,6 +22,14 @@ void print_strings(const char *separator, const unsigned int n, ...);
 	{
 		str = va_arg(args, char *);
 
-		if
+		if (str == NULL && i < n - 1)
+			printf("(nil)");
+		else
+			printf("%s", str);
 
+		if (separator != NULL && i < n - 1)
+			printf("%s", separator);
+	}
+	va_end(args);
+	printf("\n");
 }
