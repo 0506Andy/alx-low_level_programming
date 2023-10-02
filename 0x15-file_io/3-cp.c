@@ -39,32 +39,35 @@ void copy_file(const char *file_one, const char *file_two)
 	if (fd_two == -1)
 	{
 		print_error("Can't write to file");
+		close(fd_one);
 		exit(99);
 	}
 
-	while ((b_read = read(fd_one, buf, BUFFER_SIZE)) > 0)
+	do
 	{
-		b_write = write(fd_two, buf, b_read);
-
+		b_read = read(fd_one, buf, BUFFER_SIZE);
+		if (b_read == -1)
+		{
+			print_error("Can't read from file");
+			close(fd_one);
+			close(fd_two);
+			exit(98);
+		}
+		b_write = write (fd_two, buf, b_read);
 		if (b_write == -1)
 		{
 			print_error("Can't write to file");
+			close(fd_one);
+			close(fd_two);
 			exit(99);
 		}
 	}
+	while (b_read > 0);
 
-	if (b_read == -1)
-	{
-		print_error("Can't read from file");
-		exit(98);
-	}
-
-	if (close(fd_one) == -1 || close(fd_two) == -1)
-	{
-		print_error("Can't close fd");
-		exit(100);
-	}
+	close(fd_one);
+	close(fd_two);
 }
+
 
 /**
  * main - test the print_error
